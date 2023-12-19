@@ -1,131 +1,76 @@
-# [💻 LiveTerm - build terminal styled websites in minutes!](https://liveterm.vercel.app)
+# Web de links de MoureDev
 
-Highly customizable, easy-to-use, and minimal terminal styled website template, powered by Next.js.
+[![Python](https://img.shields.io/badge/Python-3.11+-yellow?style=for-the-badge&logo=python&logoColor=white&labelColor=101010)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/Reflex-0.3.6+-5646ED?style=for-the-badge&logo=reflex&logoColor=white&labelColor=101010)](https://fastapi.tiangolo.com)
 
-Building a simple website with LiveTerm only takes **minutes**, and you only need to work with **one** file: `config.json`. After you cloned this repository, simply run `yarn install && yarn dev` and start editing `config.json` to build your website!
+## Proyecto desarrollado con [Python](https://www.python.org/) y [Reflex](https://reflex.dev/) que representa un sitio web personal estilo "[link in bio](https://moure.dev/)"
 
-LiveTerm can be used to build a variety of websites:
+![https://moure.dev](../Images/web.png)
+![https://moure.dev](../Images/web.gif)
 
-- [personal website](https://cveinnt.com)
-- [browser startpage](https://livetermstart.vercel.app/)
-- [project page](https://liveterm.vercel.app/)
-- or maybe just a cool browser music player...be creative!
+## Tutorial
 
-Feel free to play with the web demo above!
+Consulta el [curso](../README.md) de 6 horas en vídeo desde cero que muestra el proceso de desarrollo de la web.
 
-## 📸 Showcase
+## Requisitos
 
-<p align="center">
-<img src="./demo/demo.gif" width="600"><br>
-<strong>LiveTerm with different themes</strong>
-</p>
+#### Instala y crea un entorno virtual [venv](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) en la raíz del proyecto
+Mac/Linux: `python3 -m pip install virtualenv`
 
-<p align="center">
-<img src="./demo/cveinnt.png" width="600"><br>
-<strong><a href="https://cveinnt.com" target=_blank>my personal website</a></strong>
-</p>
+Windows: `py -m pip install --user virtualenv`
 
-## 🚀 Ship your LiveTerm site in less than 5 minutes
+`python3 -m venv venv`
 
-LiveTerm requires the `yarn` package manager. You can install `yarn` [here](https://classic.yarnpkg.com/lang/en/docs/install/).
+#### Activa el entorno virtual 
+Mac/Linux: `source venv/bin/activate`
 
-Simply run the following commmand in your terminal:
+Windows: `.\venv\Scripts\activate`
+
+Para desactivar el entorno virtual: `deactivate`
+
+## Dependencias
+*(Con el entorno virtual activo)*
+
+`pip install reflex`
+
+También las tienes en `requirements.txt`
+
+`python -m pip install -r requirements.txt`
+
+## Ejecución
+`reflex run`
+
+`reflex run --loglevel debug` *(modo debug)*
+
+Acceder a [http://localhost:3000](http://localhost:3000) (frontend) y a [http://localhost:8000](http://localhost:8000) (backend)
+
+## Despliegue
+
+El script build.sh contiene las instrucciones necesarias para empaquetar el frontend del proyecto y desplegarlo de forma estática. Éste, en concreto, desde [Vercel](https://vercel.com/).
+
+`sh build.sh`
 
 ```bash
-sh -c "$(curl -fsSL https://raw.github.com/Cveinnt/LiveTerm/main/install/install.sh)"
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+reflex init
+reflex export --frontend-only
+rm -fr public
+unzip frontend.zip -d public
+rm -f frontend.zip
+deactivate
 ```
 
-This will install LiveTerm to the current directory. You can start building your website with:
+*Básicamente, prepera el entorno, instala dependencias, inicializa el proyecto, crea la construcción de producción, y la descomprime.*
 
-```bash
-cd LiveTerm && yarn dev
-```
+> El proyecto se puede desplegar en cualquier proveedor o servidor que soporte recursos estáticos.
+> 
+> [moure.dev](https://moure.dev) se encuentra desplegado en [Vercel](https://vercel.com).
 
-Start editing `config.json` and try saving and see the updated changes!
+Configuración en Vercel:
 
-Alternatively, you can clone this repository to a location of your choosing
-
-```bash
-git clone https://github.com/Cveinnt/LiveTerm.git && cd LiveTerm
-```
-
-Then install dependencies and start developing there:
-
-```bash
-yarn install && yarn dev
-```
-
-### Docker Usage
-
-First, clone the project and edit `config.json` to your liking. Then run the following to start the container in the background:
-
-```shell
-docker-compose up -d
-```
-
-If you **know** what you were doing, you can also try changing `Dockerfile` & `docker-compose.yml`!
-Learn more about Docker [here](https://docs.docker.com/get-started/overview/ 'here').
-
-## 📄 Configuration
-
-### Basic Configuration
-
-90% of LiveTerm's configurations are done through the `config.json` file.
-
-```javascript
-{
-  "readmeUrl": // create a Github README and link it here!
-  "title": // title of the website
-  "name": // your name, included in 'about' command
-  "ascii": // ascii art to display
-  "social": {
-    "github": // your handle
-    "linkedin": // your handle
-  },
-  "email": // your email
-  "ps1_hostname": "liveterm" // hostname in prompt
-  "ps1_username": "visitor", // username in prompt
-  "resume_url": "../resume.pdf", // path to your resume
-  "non_terminal_url": "W",
-  "colors": {
-    "light": {
-      ...
-    },
-    "dark": {
-      ... // you can use existing templates in themes.json or use your own!
-    }
-  }
-}
-```
-
-Feel free to change it as you see fit!
-
-### Themes
-
-You can find several pre-configured themes in `themes.json`, and you can replace the colors in `config.json` with the theme color you like! The themes are based on the themes on [this website](https://glitchbone.github.io/vscode-base16-term/#/).
-
-For a better preview of the themes, checkout the images in the `demo` folder.
-
-### Favicons
-
-Favicons are located in `public/`, along with the other files you may want to upload to your website. I used this [website](https://www.favicon-generator.org/) to generate favicons.
-
-### Banner
-
-You may also want to change the output of the `banner` command. To do that, simply paste your generated banner in `src/utils/bin/commands.ts`. I used this [website](https://manytools.org/hacker-tools/ascii-banner/) to generate my banner.
-
-### Advanced Configuration
-
-If you want to further customize your page, feel free to change the source code to your liking!
-
-## 🌐 Deploy on Vercel
-
-The easiest way to deploy a Next.js app is to use the [Vercel Platform](https://vercel.com/) from the creators of Next.js.
-
-You can install `vercel` cli and follow the instruction [here](https://vercel.com/docs/concepts/deployments/overview).
-
-You can also connect your github account to vercel and have vercel automatically deploy the github repository for you.
-
-## Credit
-
-Based on M4TT72's awesome [Terminal](https://github.com/m4tt72/terminal).
+* Se ha asociado el repositorio de GitHub al proyecto (para que cada `push` en la rama `main` desencadene un nuevo despliegue)
+* Build & Development Settings: Other
+* Root Directory: `public` (que contiene el empaquetado estático para producción)
+* Custom Domain: adviento.dev 
