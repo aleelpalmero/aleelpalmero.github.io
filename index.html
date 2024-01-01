@@ -55,21 +55,31 @@
     <div id="userName">
       @aleelpalmero <i class="fas fa-check-circle"></i>
     </div>
-<center>
+<center><br>
     <div id="donate-button-container">
-<div id="donate-button"></div>
-<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-<script>
-PayPal.Donation.Button({
-env:'production',
-hosted_button_id:'R59X4KDNRSGUN',
-image: {
-src:'https://pics.paypal.com/00/s/YWJkOGE0YmMtNDljMy00ODIyLThkODYtNGI3ODZkNmVkMmFj/file.PNG',
-alt:'Botón Donar con PayPal',
-title:'PayPal - The safer, easier way to pay online!',
-}
-}).render('#donate-button');
-</script>
+  <div id="donate-button"></div>
+  <style>
+    /* Estilo para reducir el tamaño de la imagen */
+    #donate-button img {
+      /* Reducción del tamaño en un 15% */
+      transform: scale(0.85);
+      /* O bien, puedes usar las propiedades de ancho y alto */
+      /* width: 85%;
+         height: auto; */
+    }
+  </style>
+  <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+  <script>
+    PayPal.Donation.Button({
+      env: 'production',
+      hosted_button_id: 'R59X4KDNRSGUN',
+      image: {
+        src: 'https://pics.paypal.com/00/s/YWJkOGE0YmMtNDljMy00ODIyLThkODYtNGI3ODZkNmVkMmFj/file.PNG',
+        alt: 'Botón Donar con PayPal',
+        title: 'PayPal - The safer, easier way to pay online!',
+      }
+    }).render('#donate-button');
+  </script>
 </div>
 </center>
     <div id="links">
